@@ -1,3 +1,3 @@
 module.exports = {
-  chaiInfoValidation: require("./charInfoValidation"),
+  charInfoValidation: require("./charInfoValidation"),
 };

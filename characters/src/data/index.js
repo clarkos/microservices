@@ -18,11 +18,6 @@ module.exports = {
   },
 
   update: (data) => {
-    const newData = {
-      ...data,
-      films: data.films.split(","),
-    };
-
     const charIndex = characters.findIndex((char) => char.id === data.id);
     if (charIndex !== -1) {
       characters[charIndex] = { ...characters[charIndex], ...newData };

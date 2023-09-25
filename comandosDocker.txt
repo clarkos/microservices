@@ -1,0 +1,5 @@
+--> CREAR IMAGEN
+docker build -t [ImgName] .
+
+--> CORRER IMAGEN
+docker run -p [LocalPortNro]:[ImgPortNro] --network=[netName] --name=[netImgName] [ImgNameToRun] --rm
