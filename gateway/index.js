@@ -7,17 +7,17 @@ const PORT = process.env.PORT || 8000;
 app.use(morgan("dev"));
 
 app.use(
-  "/films",
+  "/characters",
   createProxyMiddleware({
-    target: "http://films:8002",
+    target: "http://characters:8001",
     changeOrigin: true,
   })
 );
 
 app.use(
-  "/characters",
+  "/films",
   createProxyMiddleware({
-    target: "http://characters:8001",
+    target: "http://films:8002",
     changeOrigin: true,
   })
 );

@@ -1,4 +1,4 @@
-function infoValidation(object) {
+function infoValidation(character) {
   const requiredProperties = [
     "name",
     "height",
@@ -20,25 +20,27 @@ function infoValidation(object) {
     },
   };
 
-  if (typeof object !== "object") {
-    throw new Error("The object to be validated must be an object");
+  if (typeof character !== "object") {
+    throw new Error(
+      "The character information to be validated must be an object"
+    );
   }
 
   // Check if the required properties are present
   for (const property of requiredProperties) {
-    if (!object.hasOwnProperty(property)) {
+    if (!character.hasOwnProperty(property)) {
       throw new Error(
-        `The object is missing the required property "${property}"`
+        `The character is missing the required property "${property}"`
       );
     }
   }
 
   // Validate the values of the properties
-  const objectKeys = Object.keys(object);
+  const objectKeys = Object.keys(character);
   for (const property of objectKeys) {
     // Check if the property has a validator function
     if (validatorFn[property]) {
-      const value = object[property];
+      const value = character[property];
       if (!validatorFn[property](value)) {
         throw new Error(`The value of the property "${property}" is invalid`);
       }

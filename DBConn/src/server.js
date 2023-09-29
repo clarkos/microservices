@@ -1,8 +1,26 @@
-const { Router } = require("express");
-// const controllers = require("../controllers");
+const express = require("express");
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
 
-const routes = Router();
+const server = express();
 
-// routes.get("/", controllers.getAll);
+// server.use(express.json());
+server.use(bodyParser.json());
+server.use(morgan("dev"));
 
-module.exports = routes;
+server.use("/characters", require("./routes/characters"));
+server.use("/films", require("./routes/films"));
+server.use("/planets", require("./routes/planets"));
+
+server.use("*", (req, res) => {
+  res.status(404).send("There's no such resource on this service");
+});
+
+server.use((err, req, res, next) => {
+  res.status(err.statusCode || 500).send({
+    error: true,
+    message: err.message,
+  });
+});
+
+module.exports = server;

@@ -11,7 +11,7 @@ server.use(morgan("dev"));
 server.use("/characters", require("./routes"));
 
 server.use("*", (req, res) => {
-  res.status(404).send("Not Found");
+  res.status(404).send("There's no such resource on this service");
 });
 
 server.use((err, req, res, next) => {

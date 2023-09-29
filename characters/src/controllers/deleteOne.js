@@ -1,8 +1,10 @@
 const { response } = require("../utils");
-const Characters = require("../data");
 
 module.exports = async (req, res) => {
-  const { id } = req.params;
-  const characters = await Characters.delete(id);
+  const characters = await axios.get("http://dbconn:8004/characters/", {
+    params: {
+      id: req.params,
+    },
+  });
   response(res, 200, characters);
 };

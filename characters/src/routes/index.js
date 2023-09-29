@@ -7,7 +7,7 @@ const routes = Router();
 routes.get("/", controllers.getAll);
 routes.get("/:id", controllers.getOne);
 routes.post("/", charInfoValidation, controllers.createOne);
-routes.patch("/", controllers.updateOne);
+routes.patch("/", charInfoValidation, controllers.updateOne);
 routes.delete("/", controllers.deleteOne);
 
 module.exports = routes;

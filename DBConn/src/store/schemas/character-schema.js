@@ -30,8 +30,14 @@ characterSchema.statics.insert = async function (character) {
   return await this.create(character);
 };
 
-// characterSchema.statics.upsert = async function (data) {
-//   return await this.
-// }
+characterSchema.statics.upsert = async function (data) {
+  const filter = data._id ? { _id: data._id } : {};
+  const dataToUpdate = { $set: data };
+  return await this.findOneAndUpdate(filter, dataToUpdate, { upsert: true });
+};
+
+characterSchema.statics.erase = async function (id) {
+  return await this.findByIdAndDelete(id);
+};
 
 module.exports = characterSchema;

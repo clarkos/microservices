@@ -1,7 +1,10 @@
+const axios = require("axios");
 const { response } = require("../utils");
-const Characters = require("../data");
 
 module.exports = async (req, res) => {
-  const character = await Characters.update(req.body);
+  const character = await axios.patch(
+    "http://dbconn:8004/characters/",
+    req.body
+  );
   response(res, 200, character);
 };
